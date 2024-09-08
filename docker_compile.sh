@@ -7,9 +7,10 @@
 #
 set -euox pipefail
 
-rm -f binaries.tgz
+rm -rf binaries.tar binaries
 
-docker buildx build --tag picotool .
-CONTAINER_ID=$(docker run -d picotool)
-docker cp $CONTAINER_ID:/home/ubuntu/binaries.tgz binaries.tgz
-docker container rm --force $CONTAINER_ID
+export MOUNTDIR=/mountdir
+docker buildx build --tag picotool_builder .
+docker run -i --rm -v $PWD:$MOUNTDIR -w $MOUNTDIR --user $(id -u):$(id -g) picotool_builder ./all.sh
+
+tar -czf binaries.tgz binaries

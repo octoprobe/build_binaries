@@ -19,16 +19,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Prepare
-      run: |
-        sudo support_common/0_apt_install.sh
-
     - name: Clone and Compile
       run: |
-        support_picotool/all.sh
-        support_usbhubctl/all.sh
-        ls -lR ~/binaries.tgz ~/binaries
-        mv ~/binaries.tgz binaries.tgz
+        ./docker_compile.sh
+        ls -lR binaries.tgz binaries
 
     - name: Release binaries
       uses: softprops/action-gh-release@v2

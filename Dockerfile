@@ -1,19 +1,15 @@
 FROM ubuntu:24.04
 # FROM ubuntu:latest
 
-ENV GITHUB_WORKSPACE=/home/ubuntu/build_binaries
+RUN apt-get -y update
 
-COPY support_common $GITHUB_WORKSPACE/support_common
-RUN $GITHUB_WORKSPACE/support_common/0_apt_install.sh
+RUN apt-get install -y \
+  git cmake \
+  build-essential pkg-config libusb-1.0-0-dev \
+  gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
 
-USER ubuntu
+ENV MOUNTDIR=/mountdir
+RUN mkdir /workdir
+RUN chmod a+rwx /workdir
+ENV WORKDIR=/workdir
 
-WORKDIR /home/ubuntu
-
-COPY support_usbhubctl $GITHUB_WORKSPACE/support_usbhubctl
-RUN $GITHUB_WORKSPACE/support_usbhubctl/all.sh
-
-COPY support_picotool $GITHUB_WORKSPACE/support_picotool
-RUN $GITHUB_WORKSPACE/support_picotool/all.sh
-
-CMD ["sleep", "infinity"]

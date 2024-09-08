@@ -29,13 +29,14 @@ This applies for `docker_compile.sh` AND the github workflow.
 
 | Directory | Comment |
 | - | - |
-| GITHUB_WORKSPACE | https://github.com/octoprobe/build_binaries |
-| ~/support_picotool |  |
-| ~/support_usbhubctl |  |
-| ~/pico-sdk | https://github.com/raspberrypi/pico-sdk.git |
-| ~/picotool | https://github.com/raspberrypi/picotool.git |
-| ~/usbhubctl | https://github.com/octoprobe/usbhubctl.git |
-| ~/binaries.tgz |  |
+| $WORKDIR/build_binaries | https://github.com/octoprobe/build_binaries |
+| $WORKDIR/support_picotool |  |
+| $WORKDIR/support_usbhubctl |  |
+| $WORKDIR/pico-sdk | https://github.com/raspberrypi/pico-sdk.git |
+| $WORKDIR/picotool | https://github.com/raspberrypi/picotool.git |
+| $WORKDIR/usbhubctl | https://github.com/octoprobe/usbhubctl.git |
+| $MOUNTDIR/binaries/... |  |
+| $MOUNTDIR/binaries.tgz |  |
 
 
 ## `docker_compile.sh`
@@ -50,7 +51,14 @@ Eventually, a `binaries.tgz` file is created.
 Add a tag and push
 
 ```bash
-git tag -a v0.0.1
+git tag -a v0.0.1 -m v0.0.1
 git push
 git push --tags
+```
+
+To remove a tag
+
+```bash
+git push --delete origin v0.0.1
+git tag -d v0.0.1
 ```

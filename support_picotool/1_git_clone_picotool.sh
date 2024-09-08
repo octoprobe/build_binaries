@@ -2,7 +2,7 @@
 
 set -euox pipefail
 
-cd ~
+cd $WORKDIR
 
 rm -rf picotool
 
