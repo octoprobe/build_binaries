@@ -5,7 +5,7 @@ RUN apt-get -y update
 
 RUN apt-get install -y \
   git cmake \
-  build-essential pkg-config libusb-1.0-0-dev \
+  build-essential pkg-config libusb-1.0-0-dev libusb-dev \
   gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
 
 ENV MOUNTDIR=/mountdir
