@@ -4,9 +4,7 @@ This github workflow will create the following artifacts:
 
 ```
 binaries/x86_64/picotool
-binaries/x86_64/usbhubctl_sysfs
 binaries/aarch64/picotool
-binaries/aarch64/usbhubctl_sysfs
 ```
 
 The workflow is triggered by every push.
@@ -31,7 +29,6 @@ This applies for `docker_compile.sh` AND the github workflow.
 | - | - |
 | $WORKDIR/build_binaries | https://github.com/octoprobe/build_binaries |
 | $WORKDIR/support_picotool |  |
-| $WORKDIR/support_usbhubctl |  |
 | $WORKDIR/pico-sdk | https://github.com/raspberrypi/pico-sdk.git |
 | $WORKDIR/picotool | https://github.com/raspberrypi/picotool.git |
 | $WORKDIR/usbhubctl | https://github.com/octoprobe/usbhubctl.git |
